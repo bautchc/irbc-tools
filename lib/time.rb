@@ -35,7 +35,7 @@ class Time
 
   # (Integer) -> String
   def subtract(other)
-    @hours -= other / 100 + (@minutes - other % 100) / 60
+    @hours -= other / 100 - (@minutes - other % 100) / 60
     @minutes = (@minutes - other % 100) % 60
     inspect
   end
