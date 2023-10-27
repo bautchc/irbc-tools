@@ -63,7 +63,7 @@ class Curve
           .[](0...-1)
           .each { |star| puts "#{star}: #{(@settings[star] * reviews).round}" if @settings[star] }
 
-    puts "5: #{reviews - @settings.values.sum}"
+    puts "5: #{reviews - @settings.values.map {|fraction| (fraction * reviews).round}.sum}"
   end
 
   # () -> none
