@@ -60,7 +60,7 @@ class Curve
     (0..4).map { |i| i + 0.5 }
           .zip(1..4)
           .flatten
-          [0...-1]
+          .[](0...-1)
           .each { |star| puts "#{star}: #{(@settings[star] * reviews).round}" if @settings[star] }
 
     puts "5: #{reviews - @settings.values.sum}"
