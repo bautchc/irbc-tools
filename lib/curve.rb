@@ -57,13 +57,14 @@ class Curve
 
   # (Integer) -> none
   def calc(reviews)
-    (0..4).map { |i| i + 0.5 }
-          .zip(1..4)
-          .flatten
-          .[](0...-1)
-          .each { |star| puts "#{star}: #{(@settings[star] * reviews).round}" if @settings[star] }
-
-    puts "5: #{reviews - @settings.values.map {|fraction| (fraction * reviews).round}.sum}"
+    curve = (0..4).map { |i| i + 0.5 }
+                  .zip(1..4)
+                  .flatten
+                  .[](0...-1)
+                  .filter { |star| @settings[star] }
+                  .map { |star| [star, (@settings[star] * reviews).round] }
+    curve.append([5, reviews - curve.map(&:last).sum])
+    curve.reverse.each { |star, count| puts "#{star}: #{count}" }
   end
 
   # () -> none
