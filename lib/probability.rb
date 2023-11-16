@@ -39,6 +39,16 @@ class Integer
   def factorial
     (1..self).reduce(:*) || 1
   end
+end
 
-  alias_method :fl, :factorial
+class Array
+  def mean(trim = 0, type = :fraction)
+    if type == :fraction
+      trim = trim * self.length
+    end
+    (self.sort[trim.ceil..-(trim.ceil) - 1].sum + (trim - trim.to_i) * (self[trim.ceil - 1] + self[-(trim.ceil)])) \
+    / (self.length - 2 * trim)
+  end
+
+  :private
 end
