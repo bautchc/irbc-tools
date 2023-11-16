@@ -18,4 +18,3 @@
 # Loads useful gems
 
 require 'descriptive_statistics'
-require 'cmath'
