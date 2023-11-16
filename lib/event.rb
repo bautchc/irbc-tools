@@ -13,5 +13,13 @@ class Event
     Event.new(probability + other.probability - self & other)
   end
 
+  def !
+    Event.new(1 - probability)
+  end
+
+  def inspect
+    @probability.to_s
+  end
+
   alias_method :p, :probability
 end
