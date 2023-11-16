@@ -22,3 +22,9 @@ class Integer
     self.fdiv(other)
   end
 end
+
+class Float
+  def inspect
+    self.round(13).to_s
+  end
+end
