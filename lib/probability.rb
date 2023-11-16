@@ -29,6 +29,8 @@ def C(n, k)
   factorial(n) / (factorial(k) * factorial(n - k))
 end
 
+# Monkeypatching below this point. Use at your own risk.
+
 class Integer
   def !@
     factorial
@@ -36,5 +38,11 @@ class Integer
 
   def factorial
     (1..self).reduce(:*) || 1
+  end
+end
+
+class Array
+  def mean 
+    sum / length.to_f
   end
 end
