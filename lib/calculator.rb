@@ -21,15 +21,11 @@ class Integer
   def /(other)
     self.fdiv(other)
   end
-
-  def ^(other)
-    self ** other
-  end
 end
 
-class Float
-  def inspect
-    self.round(13).to_s
+class Numeric
+  def ^(other)
+    self ** other
   end
 end
 
