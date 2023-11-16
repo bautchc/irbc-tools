@@ -33,6 +33,7 @@ def mean(array)
   array.sum / array.length.to_f
 end
 
+# Aliases
 def fl(n) factorial(n) end
 def p(n, k) P(n, k) end
 def c(n, k) C(n, k) end
