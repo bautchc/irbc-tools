@@ -21,6 +21,10 @@ class Integer
   def /(other)
     self.fdiv(other)
   end
+
+  def ^(other)
+    self ** other
+  end
 end
 
 class Float
