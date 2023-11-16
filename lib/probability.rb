@@ -29,16 +29,6 @@ def C(n, k)
   factorial(n) / (factorial(k) * factorial(n - k))
 end
 
-def mean(array)
-  array.sum / array.length.to_f
-end
-
-# Aliases
-def fl(n) factorial(n) end
-def p(n, k) P(n, k) end
-def c(n, k) C(n, k) end
-def mn(array) mean(array) end
-
 # Monkeypatching below this point. Use at your own risk.
 
 class Integer
@@ -51,12 +41,4 @@ class Integer
   end
 
   alias_method :fl, :factorial
-end
-
-class Array
-  def mean 
-    sum / length.to_f
-  end
-
-  alias_method :mn, :mean
 end
