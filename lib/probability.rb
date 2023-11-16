@@ -29,6 +29,15 @@ def C(n, k)
   factorial(n) / (factorial(k) * factorial(n - k))
 end
 
+def mean(array)
+  array.sum / array.length.to_f
+end
+
+alias_method :fl, :factorial
+alias_method :p, :P
+alias_method :c, :C
+alias_method :mn, :mean
+
 # Monkeypatching below this point. Use at your own risk.
 
 class Integer
@@ -39,10 +48,14 @@ class Integer
   def factorial
     (1..self).reduce(:*) || 1
   end
+
+  alias_method :fl, :factorial
 end
 
 class Array
   def mean 
     sum / length.to_f
   end
+
+  alias_method :mn, :mean
 end
