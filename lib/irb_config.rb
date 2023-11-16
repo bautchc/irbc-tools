@@ -18,3 +18,9 @@
 # Adds memory to IRB
 
 IRB.conf[:EVAL_HISTORY] = 100
+
+class Float
+  def inspect
+    self.round(13).to_s
+  end
+end
