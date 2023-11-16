@@ -18,7 +18,7 @@
 # Some methods to simplify using the irb as a calculator.
 
 class Integer
-  def @/@(other)
+  def /(other)
     self.fdiv(other)
   end
 end
