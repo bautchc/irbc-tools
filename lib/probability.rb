@@ -33,10 +33,10 @@ def mean(array)
   array.sum / array.length.to_f
 end
 
-alias_method :fl, :factorial
-alias_method :p, :P
-alias_method :c, :C
-alias_method :mn, :mean
+def fl(n) factorial(n) end
+def p(n, k) P(n, k) end
+def c(n, k) C(n, k) end
+def mn(array) mean(array) end
 
 # Monkeypatching below this point. Use at your own risk.
 
