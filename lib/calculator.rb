@@ -32,3 +32,15 @@ class Float
     self.round(13).to_s
   end
 end
+
+class Array
+  def roots
+    if self.length == 2
+      -self[1] / self[0]
+    elsif self.length == 3
+      [1, -1].map {|sign| (-self[1] + sign * (self[1] ** 2 - 4 * self[0] * self[2]) ** 0.5) / (2 * self[0])}
+    else
+      nil
+    end
+  end
+end
