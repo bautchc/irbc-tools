@@ -10,7 +10,7 @@ class Event
   end
 
   def |(other)
-    Event.new(probability + other.probability - self & other)
+    Event.new(probability + other.probability - (self & other).probability)
   end
 
   def !
