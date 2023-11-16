@@ -28,3 +28,13 @@ end
 def C(n, k)
   factorial(n) / (factorial(k) * factorial(n - k))
 end
+
+class Integer
+  def !@
+    factorial
+  end
+
+  def factorial
+    (1..self).reduce(:*) || 1
+  end
+end
