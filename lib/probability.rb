@@ -49,6 +49,4 @@ class Array
     (self.sort[trim.ceil..-(trim.ceil) - 1].sum + (trim - trim.to_i) * (self[trim.ceil - 1] + self[-(trim.ceil)])) \
     / (self.length - 2 * trim)
   end
-
-  :private
 end
