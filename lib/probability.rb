@@ -29,6 +29,41 @@ def C(n, k)
   factorial(n) / (factorial(k) * factorial(n - k))
 end
 
+def b(x, n, p)
+  C(n, x) * p ** x * (1 - p) ** (n - x)
+end
+
+class Bin
+  def initialize(n, p)
+    @n = n
+    @p = p
+  end
+
+  def p(lower, upper=nil)
+    if upper
+      (lower..upper).map {|x| b(x, @n, @p)}.sum
+    else
+      b(lower, @n, @p)
+    end
+  end
+
+  def mu 
+    @n * @p
+  end
+
+  def sigma
+    (@n * @p * (1 - @p)) ** 0.5
+  end
+
+  def sigma2
+    @n * @p * (1 - @p)
+  end
+
+  def inspect
+    "{n: #{@n}, p: #{@p}}"
+  end
+end
+
 # Monkeypatching below this point. Use at your own risk.
 
 class Integer
