@@ -33,6 +33,10 @@ def b(x, n, p)
   C(n, x) * p ** x * (1 - p) ** (n - x)
 end
 
+def poisson(x, mu)
+  (mu ** x * Math.exp(-mu)) / factorial(x)
+end
+
 class Bin
   def initialize(n, p)
     @n = n
@@ -61,6 +65,36 @@ class Bin
 
   def inspect
     "{n: #{@n}, p: #{@p}}"
+  end
+end
+
+class Poisson
+  def initialize(mu)
+    @mu = mu
+  end
+
+  def p(lower, upper=nil)
+    if upper
+      (lower..upper).map {|x| poisson(x, @mu)}.sum
+    else
+      poisson(lower, @mu)
+    end
+  end
+
+  def mu
+    @mu
+  end
+
+  def sigma
+    @mu ** 0.5
+  end
+
+  def sigma2
+    @mu
+  end
+
+  def inspect
+    "{mu: #{@mu}}"
   end
 end
 
