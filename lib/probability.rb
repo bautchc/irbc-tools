@@ -37,6 +37,40 @@ def poisson(x, mu)
   (mu ** x * Math.exp(-mu)) / factorial(x)
 end
 
+def phi(z)
+  0.5 * (1 + Math.erf(z / Math.sqrt(2)))
+end
+
+
+def ci(x_bar, sigma, n, confidence_level)
+  margin_of_error = Statistics2.pnormaldist((1 + confidence_level) / 2) * (sigma / Math.sqrt(n))
+
+  [x_bar - margin_of_error, x_bar + margin_of_error]
+end
+
+def n_for_width(loc, sigma, w)
+  (2 * Statistics2.pnormaldist((1 + loc) / 2) * sigma / w) ** 2
+end
+
+def confidence_level(z_alpha_over_2)
+  1 - 2 * (1 - Statistics2.pnormaldist(z_alpha_over_2))
+end
+
+def prop_ci(sample_proportion, sample_size, confidence_level)
+  z = Statistics2.pnormaldist((1 + confidence_level) / 2)
+  margin_of_error = z * Math.sqrt((sample_proportion * (1 - sample_proportion)) / sample_size)
+
+  lower_bound = sample_proportion - margin_of_error
+  upper_bound = sample_proportion + margin_of_error
+
+  [lower_bound, upper_bound]
+end
+
+def t(confidence_level, degrees_of_freedom)
+  alpha = 1 - confidence_level
+  t = Statistics2.t(alpha / 2, degrees_of_freedom)
+end
+
 class Bin
   def initialize(n, p)
     @n = n
@@ -95,6 +129,47 @@ class Poisson
 
   def inspect
     "{mu: #{@mu}}"
+  end
+end
+
+class N
+  def initialize(mu, sigma)
+    @mu = mu
+    @sigma = sigma
+  end
+
+  def phi(x)
+    0.5 * (1 + Math.erf((x - @mu) / @sigma / Math.sqrt(2)))
+  end
+end
+
+class Exponential
+  def initialize(lambda_)
+    @lambda = lambda_
+  end
+
+  def p(lower, upper=nil)
+    if upper
+      p(upper) - p(lower)
+    else
+      @lambda - Math.exp(-@lambda * lower)
+    end
+  end
+
+  def mu
+    1 / @lambda
+  end
+
+  def sigma
+    1 / @lambda
+  end
+
+  def sigma2
+    1 / @lambda ** 2
+  end
+
+  def inspect
+    "{lambda: #{@lambda}}"
   end
 end
 

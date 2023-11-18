@@ -18,3 +18,4 @@
 # Loads useful gems
 
 require 'descriptive_statistics'
+require 'statistics2'
