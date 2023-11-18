@@ -23,12 +23,6 @@ class Integer
   end
 end
 
-class Numeric
-  def ^(other)
-    self ** other
-  end
-end
-
 class Array
   def roots
     if self.length == 2
