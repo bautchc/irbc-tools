@@ -64,7 +64,10 @@ class Curve
                   .filter { |star| @settings[star] }
                   .map { |star| [star, (@settings[star] * reviews).round] }
     curve.append([5, reviews - curve.map(&:last).sum])
-    curve.reverse.each { |star, count| puts "#{star}: #{count}" }
+    curve.reverse.each do |star, count| 
+      puts "#{star.to_s.ljust(curve.map { |star, _| star.to_s.length}.max)} : #{count}"
+    end
+    curve.to_h
   end
 
   # () -> none
